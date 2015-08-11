@@ -9,8 +9,11 @@ Galerie zum WPF Moderne Webanwendungen mit CSS3, HTML5, PHP
 3. Die Zugangsdaten der Datenbank in die Datei config.php im Ordner "includes" hinzufügen:
 
 private	$host = "localhost << jeweils zwischen den Klammern ändern";
+
 private $user = "user";
+
 private $pass = "pass";
+
 private $dbname = "dbname";
 
-4. Sollte jetzt laufen
+Sollte jetzt laufen!
