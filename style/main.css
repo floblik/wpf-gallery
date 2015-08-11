@@ -1,0 +1,92 @@
+.bg-danger {
+	padding: 0 5px;
+}
+    
+.content {
+    padding: 40px 0;
+margin-bottom: 200px; /* Height of footer */
+}
+
+.form-login{
+  padding: 1em;
+  min-width: 280px; /* change width as per your requirement */
+}
+
+.modal-open .modal,a:focus{
+    outline:none!important
+}
+
+a {
+
+	text-decoration: none;
+}
+.col-centered {
+	float:none;
+	 margin:0px auto;
+ 
+}
+
+.inner {
+   padding-left:15px;
+   padding-top:20px;
+}
+.profile-page .avatar {
+	max-width: 100%;
+margin: 0 auto;
+display: block;
+margin-top:20px;
+}
+.settings-page .avatar {
+	max-width: 100%;
+margin: 0 auto;
+display: block;
+margin-top:10px;
+}
+.profile-page .user-galleries {
+	margin-top:50px;
+}
+
+.settings-page .control-label {
+	margin-top:4px;
+font-size:15px;
+}
+
+.img_abstand {
+	margin-right:5px;
+	margin-bottom:5px;
+}
+#links {
+	padding-top:20px;
+}
+.avatartext {
+	margin-left:20px;
+}
+
+.abcd img{
+    height:100px;
+    width:100px;
+    padding: 5px;
+    border: 1px solid rgb(232, 222, 189);
+}
+.abcd .imgdelete{ 
+    width: 32px;
+    border: none; 
+    height:32px;
+    margin-left: -20px;
+    margin-bottom: 91px;
+}
+
+.cross_upload {
+	width:15px;
+	height:15px;
+	margin-top:-5px;
+}
+#filediv {
+	list-style: none !important;
+}
+input[type=file] {
+	display: inline-block;
+}
+.avatarbutton {
+	padding-top:10px;
+}
