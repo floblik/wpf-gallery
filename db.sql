@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.3
--- Erstellungszeit: 13. August 2015 um 23:30
+-- Erstellungszeit: 13. August 2015 um 23:32
 -- Server Version: 5.6.19
 -- PHP-Version: 4.4.9
 
@@ -19,7 +19,6 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Tabellenstruktur für Tabelle `gallery`
 --
 
-DROP TABLE IF EXISTS `gallery`;
 CREATE TABLE `gallery` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `orig_path` varchar(80) DEFAULT NULL,
@@ -29,7 +28,7 @@ CREATE TABLE `gallery` (
   `description` varchar(100) DEFAULT NULL,
   `title` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=253 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -37,7 +36,6 @@ CREATE TABLE `gallery` (
 -- Tabellenstruktur für Tabelle `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
@@ -47,4 +45,4 @@ CREATE TABLE `users` (
   `timestamp` date DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=32 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
