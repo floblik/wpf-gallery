@@ -49,7 +49,8 @@ require('layout/header.php');
 
 	    <div class="col-xs-12 col-sm-8 col-md-12">
 			<div class="inner">
-				<h2>Dashboard</h2>
+				<?php if ($user->is_logged_in())  { ?><h2>Dashboard</h2><?php } else { ?>
+				<h2>Startseite</h2><? } ?>
 				<hr>
 			</div>
 		</div>
@@ -73,7 +74,7 @@ require('layout/header.php');
                                     if ($amountImages > 0) {
                                     ?><div id="index_pics"><?php
                                         foreach ($images as $value) {
-                                            echo '<a href="'.$value->orig_path.'" data-gallery="#blueimp-gallery-ownpics"><img src="'.$value->full_thumb.'" class="img_abstand" /></a>';
+                                            echo '<a href="'.$value->orig_path.'" title="'.$value->title.'" data-description="'.$value->description.'" data-gallery="#blueimp-gallery-ownpics"><img src="'.$value->full_thumb.'" class="img_abstand" alt="'.$value->description.'" /></a>';
                                             
                                         }
                                         ?></div><?php

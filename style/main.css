@@ -90,3 +90,24 @@ input[type=file] {
 .avatarbutton {
 	padding-top:10px;
 }
+.margintop {
+	margin-top:20px;
+}
+.remove_image {
+	float:right;
+}
+.blueimp-gallery > .description {
+ position: absolute;
+top: 45px;
+left: 15px;
+margin: 0 40px 0 0;
+font-size: 15px;
+line-height: 30px;
+color: #fff;
+text-shadow: 0 0 2px #000;
+opacity: .8;
+display: none;
+}
+.blueimp-gallery-controls > .description {
+  display: block;
+}

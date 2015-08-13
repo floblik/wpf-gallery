@@ -64,7 +64,7 @@ require('layout/header.php');
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12 col-sm-8 col-md-6">
+                <div class="col-xs-12 col-sm-8 col-md-4">
                     <div class="inner">
                        
                             <p class="hello">Hallo <?= $_SESSION['user'];?>
@@ -80,9 +80,12 @@ require('layout/header.php');
                  
                                  <ul id="filediv"><li><input name="image[]" type="file" id="image" accept="image/jpg,image/png,image/jpeg,image/gif"/></li></ul><br />
            
+          <div class="form-group pull-right">
+				
                     <input type="button" id="add_more" class="upload btn btn-default" value="Add More Files"/>
          
                                 <input type="submit" id="upload" class="btn btn-success" name="send">
+          </div>
                             </form>
                            
                     </div>
@@ -97,7 +100,7 @@ require('layout/header.php');
                                     if ($amountImages > 0) {
                                     ?><div id="uploadpics"><?php
                                         foreach ($images as $value) {
-                                            echo '<a href="'.$value->orig_path.'" data-gallery><img src="'.$value->full_thumb.'" class="img_abstand" /></a>';
+                                            echo '<a href="'.$value->orig_path.'" data-description="'.$value->description.'" title="'.$value->title.'" data-gallery><img src="'.$value->full_thumb.'" class="img_abstand" alt="'.$value->description.'" /></a>';
                                             
                                         }
                                         ?></div><?php

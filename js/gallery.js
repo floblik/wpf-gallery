@@ -43,6 +43,16 @@ $(function () {
                 .appendTo(linksContainer);
         });
     });
+    
+    $('#blueimp-gallery').on('slide', function (event, index, slide) {
+    $(this).children('.description')
+        .text($('#uploadpics a').eq(index).data('description'));
+});
+
+  $('#blueimp-gallery').on('slide', function (event, index, slide) {
+    $(this).children('.description')
+        .text($('#index_pics a').eq(index).data('description'));
+});
 
 
 });

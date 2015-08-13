@@ -10,7 +10,7 @@ class GalleryMaker {
 	
 	public function getImages($user_id) {
 		$paths = array();
-		$stmt = $this->db->prepare('SELECT id, thumb_path, orig_path, full_thumb FROM gallery WHERE user_id= :user_id ORDER BY id DESC');
+		$stmt = $this->db->prepare('SELECT id, thumb_path, orig_path, full_thumb, description, title FROM gallery WHERE user_id= :user_id ORDER BY id DESC');
 		$stmt->bindValue(':user_id',$user_id);
 		$stmt->execute();
 		
@@ -21,6 +21,8 @@ class GalleryMaker {
 			$row->id = $row->thumb_path;
 			$row->id = $row->orig_path;
 			$row->id = $row->full_thumb;
+			$row->id = $row->description;
+			$row->id = $row->title;
 		}
 			return $paths;
 			$stmt=null;
@@ -31,7 +33,7 @@ class GalleryMaker {
 	
 		 
 		 for ($i = 0; $i < count($_FILES['image']['name']); $i++) {//loop to get individual element from the array
-		 
+			 	 
 				 
 // Access the $_FILES global variable for this specific file being uploaded
 // and create local PHP variables from the $_FILES array of information
@@ -78,8 +80,24 @@ $fullThumbImage   = "images/".$_SESSION['userId']."/". $new_image . "-fullthumb"
 
 $action = move_uploaded_file($fileTmpLoc, $originalImage);
 
+		
+		if(!empty($_POST['description'][$i])) {
+       $description = $_POST['description'][$i]; 
+   	
+		}
+		else {
+			$description = NULL;
+		}
+		
+	if(!empty($_POST['title'][$i])) {
+       $title = $_POST['title'][$i]; 
+       }
+       else {
+	       $title = reset($kaboom);
+       }
 
-			$stmt = $this->db->prepare("INSERT INTO gallery (user_id, orig_path,thumb_path,full_thumb) VALUES ('".$_SESSION['userId']."', '".$originalImage."', '".$thumbImage."', '".$fullThumbImage."' )");
+
+			$stmt = $this->db->prepare("INSERT INTO gallery (user_id, orig_path,thumb_path,full_thumb, description, title) VALUES ('".$_SESSION['userId']."', '".$originalImage."', '".$thumbImage."', '".$fullThumbImage."', '".$description."' , '".$title."' )");
 			$stmt->execute();
 			$stmt=null;
 	
