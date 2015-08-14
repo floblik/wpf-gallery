@@ -2,15 +2,23 @@ var abc = 0; //Declaring and defining global increement variable
 
 $( document ).ready(function() {
 	
-	
 	//To add new input file field dynamically, on click of "Add More Files" button below function will be executed
     $('#add_more').click(function(e) {
 	    e.preventDefault();
-	     $("#filediv").append(
-        '<li><br />'
+	    
+	     if($('#filediv ul').children().length<4)
+{
+     $("#filediv ul").append(
+        '<li>'
      +  '<input name="image[]" id="image" type="file" class="new_image" accept="image/jpg,image/png,image/jpeg,image/gif" /> '
       + '<a href="#" class="remove_image"><img class="cross_upload" src="./img/x.png" /></a>'
       + '</li>');
+}
+else
+{
+      alert("Es können nicht mehr als 4 Dateien gleichzeitig hochgeladen werden.");
+}
+	    
 });
     
     $('#filediv').on('click', '.remove_image', function(e) {

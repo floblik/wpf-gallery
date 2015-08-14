@@ -2,7 +2,7 @@
 
 class DBConnector extends PDO {    
 	
-	private	$host = "localhost";
+	private	$host = "host";
 	private $user = "user";
 	private $pass = "pass";
 	private $dbname = "dbname";
@@ -13,7 +13,8 @@ class DBConnector extends PDO {
         // Set options
         $options = array(
 	     
-            PDO::ATTR_ERRMODE       => PDO::ERRMODE_EXCEPTION
+            PDO::ATTR_ERRMODE       => PDO::ERRMODE_EXCEPTION,
+            PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
         );
         
     parent::__construct($dsn, $this->user, $this->pass, $options);

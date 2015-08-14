@@ -1,5 +1,5 @@
 <?php
-
+require_once('includes/config.php');
 class GalleryMaker {
 	
 	private $db;
@@ -10,21 +10,30 @@ class GalleryMaker {
 	
 	public function getImages($user_id) {
 		$paths = array();
-		$stmt = $this->db->prepare('SELECT id, thumb_path, orig_path, full_thumb, description, title FROM gallery WHERE user_id= :user_id ORDER BY id DESC');
+		$stmt = $this->db->prepare('SELECT * FROM gallery WHERE user_id= :user_id ORDER BY id DESC');
+		$stmt->bindValue(':user_id',$user_id);
+		$stmt->execute();
+		
+
+		while($row = $stmt->fetchAll(PDO::FETCH_OBJ)) {
+			return $row;
+		}
+
+			$stmt=null;
+		}
+		
+		public function searchImages($query,$user_id) {
+		$paths = array();
+		$stmt = $this->db->prepare('SELECT * FROM gallery
+            WHERE user_id = :user_id AND ((`title` LIKE :query) OR (`description` LIKE :query)) ');
+		$stmt->bindValue(':query','%'.$query.'%');
 		$stmt->bindValue(':user_id',$user_id);
 		$stmt->execute();
 		
 		
-		$paths = $stmt->fetchAll(PDO::FETCH_OBJ);
-		
-		foreach($paths as $row) {
-			$row->id = $row->thumb_path;
-			$row->id = $row->orig_path;
-			$row->id = $row->full_thumb;
-			$row->id = $row->description;
-			$row->id = $row->title;
+		while($row = $stmt->fetchAll(PDO::FETCH_OBJ)) {
+			return $row;
 		}
-			return $paths;
 			$stmt=null;
 		}
 		
@@ -76,7 +85,6 @@ if (!file_exists("images/". $_SESSION["userId"])) {
 
 $originalImage  = "images/".$_SESSION['userId']."/". $new_image . "-orig" . "." . $extension;
 $thumbImage   = "images/".$_SESSION['userId']."/". $new_image . "-thumb" . "." . $extension;
-$fullThumbImage   = "images/".$_SESSION['userId']."/". $new_image . "-fullthumb" . "." . $extension;
 
 $action = move_uploaded_file($fileTmpLoc, $originalImage);
 
@@ -97,12 +105,9 @@ $action = move_uploaded_file($fileTmpLoc, $originalImage);
        }
 
 
-			$stmt = $this->db->prepare("INSERT INTO gallery (user_id, orig_path,thumb_path,full_thumb, description, title) VALUES ('".$_SESSION['userId']."', '".$originalImage."', '".$thumbImage."', '".$fullThumbImage."', '".$description."' , '".$title."' )");
+			$stmt = $this->db->prepare("INSERT INTO gallery (user_id, orig_path,thumb_path, description, title) VALUES ('".$_SESSION['userId']."', '".$originalImage."', '".$thumbImage."', '".$description."' , '".$title."' )");
 			$stmt->execute();
 			$stmt=null;
-	
-
-$max_width = 250;
 
 $full_height = 250;
 $full_width = 250;
@@ -129,23 +134,8 @@ switch ($type) {
             break;
 }
 
-
-$image_width = $orig_width;
-$image_height = $orig_height;
-
 $thumb_width = $orig_width;
 $thumb_height = $orig_height;
-
-
-if ($image_width > $image_height) {
-  $y = 0;
-  $x = ($image_width - $image_height) / 2;
-  $smallestSide = $image_height;
-} else {
-  $x = 0;
-  $y = ($image_height - $image_width) / 2;
-  $smallestSide = $image_width;
-}
 
 
 if ($thumb_height > $full_height) {
@@ -162,19 +152,12 @@ if ($thumb_height > $full_height) {
 
 $image_source = $image_create_func($originalImage);
 
-$new_image = imagecreatetruecolor($max_width , $max_width);
-
 $new_full_thumb = imagecreatetruecolor($thumb_width, $thumb_height);
-
-    imagecopyresampled($new_image, $image_source, 0, 0, $x, $y, $image_width, $image_height, $smallestSide, $smallestSide);
      
      imagecopyresampled($new_full_thumb, $image_source, 0, 0, 0, 0, $thumb_width, $thumb_height, $orig_width, $orig_height);
      
-     $image_save_func($new_image, $thumbImage);
+     $image_save_func($new_full_thumb, $thumbImage);
      
-      $image_save_func($new_full_thumb, $fullThumbImage);
-     
-    imagedestroy($new_image);
     imagedestroy($new_full_thumb);
 	
 }

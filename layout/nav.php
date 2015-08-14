@@ -71,10 +71,11 @@
         <?php } ?>
      
       </ul>
+
       <ul class="nav navbar-nav navbar-right">
-	     <li> <form class="navbar-form" role="search">
+	     <li> <form action="search.php" method="GET" class="navbar-form" role="search">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <input type="text" class="form-control" name="query" placeholder="<?php if(isset($_GET['query'])) { echo $_GET['query']; } else { echo 'Search';  } ?>">
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form></li>

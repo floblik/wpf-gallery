@@ -1,3 +1,10 @@
+<div id="footer">
+ 
+    <p class="credit">Ein Projekt im Rahmen des WPF Moderne Webanwendungen.</p>
+
+</div>
+
+
 <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
 <div id="blueimp-gallery" class="blueimp-gallery" data-use-bootstrap-modal="false">
     <!-- The container for the modal slides -->

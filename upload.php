@@ -28,14 +28,7 @@ $title = 'Upload';
 //include header template
 require('layout/header.php'); 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
-<html>
-<head>
-    <title></title>
-</head>
-
-<body>
     <div class="container-fluid">
         <div class="content">
             <?php require('layout/nav.php'); ?>
@@ -78,9 +71,9 @@ require('layout/header.php');
                             <form method="post" id="uploadForm" name="uploadForm" enctype="multipart/form-data">
 
                  
-                                 <ul id="filediv"><li><input name="image[]" type="file" id="image" accept="image/jpg,image/png,image/jpeg,image/gif"/></li></ul><br />
-           
-          <div class="form-group pull-right">
+                                 <div id="filediv"><ul><li><input name="image[]" type="file" id="image" accept="image/jpg,image/png,image/jpeg,image/gif"/></li></ul></div>
+                                            
+          <div class="form-group pull-right margintop">
 				
                     <input type="button" id="add_more" class="upload btn btn-default" value="Add More Files"/>
          
@@ -100,7 +93,7 @@ require('layout/header.php');
                                     if ($amountImages > 0) {
                                     ?><div id="uploadpics"><?php
                                         foreach ($images as $value) {
-                                            echo '<a href="'.$value->orig_path.'" data-description="'.$value->description.'" title="'.$value->title.'" data-gallery><img src="'.$value->full_thumb.'" class="img_abstand" alt="'.$value->description.'" /></a>';
+                                            echo '<a href="'.$value->orig_path.'" data-description="'.$value->description.'" title="'.$value->title.'" data-gallery><img src="'.$value->thumb_path.'" class="img_abstand" alt="'.$value->description.'" /></a>';
                                             
                                         }
                                         ?></div><?php
@@ -115,5 +108,3 @@ require('layout/header.php');
     //include header template
     require('layout/footer.php'); 
     ?>
-</body>
-</html>

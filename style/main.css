@@ -1,10 +1,22 @@
+* {
+  margin: 0;
+  font-family: 'Droid Sans', sans-serif;
+}
+html, body {
+  height: 100%;
+}
+
 .bg-danger {
 	padding: 0 5px;
 }
     
 .content {
     padding: 40px 0;
-margin-bottom: 200px; /* Height of footer */
+}
+
+.container-fluid {
+	min-height: 100%;
+	margin-bottom: -150px; 
 }
 
 .form-login{
@@ -62,9 +74,19 @@ font-size:15px;
 	margin-left:20px;
 }
 
+#filediv { padding:0; margin:0;}
+#filediv ul { padding:0; margin:0; list-style:none; border:0;}
+#filediv ul li {margin-bottom: 10px; padding:0; border:0;}
+
+.abcd {
+	margin: 0px auto;
+position: relative;
+text-align: center;
+}
+
 .abcd img{
-    height:100px;
-    width:100px;
+    height:200px;
+    width:200px;
     padding: 5px;
     border: 1px solid rgb(232, 222, 189);
 }
@@ -73,7 +95,7 @@ font-size:15px;
     border: none; 
     height:32px;
     margin-left: -20px;
-    margin-bottom: 91px;
+    margin-bottom: 192px;
 }
 
 .cross_upload {
@@ -95,6 +117,7 @@ input[type=file] {
 }
 .remove_image {
 	float:right;
+	display: block;
 }
 .blueimp-gallery > .description {
  position: absolute;
@@ -111,3 +134,24 @@ display: none;
 .blueimp-gallery-controls > .description {
   display: block;
 }
+#footer {
+  background-color: #f5f5f5;
+  line-height: 150px;
+  text-align: center;
+  font-size:30px;
+}
+
+#footer, .content:after {
+	height:150px;
+}
+
+.content:after {
+	  content: "";
+  display: block;
+}
+.credit {
+	  display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
