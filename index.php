@@ -24,7 +24,7 @@ require('layout/header.php');
                             if(isset($loginerror)){
                                 foreach($loginerror as $lerror){
                                     echo '<div class="row">
-              <div class="col-md-8"><p class="bg-danger">'.$lerror.'</p></div>';
+              <div class="col-md-8"><p class="bg-danger">'.$lerror.'</p></div></div>';
                                 }
                                 ?>
                                 
@@ -37,7 +37,7 @@ require('layout/header.php');
         
         <?php if($erfolg){ 
                                 echo '<div class="row">
-              <div class="col-md-8"><p class="bg-success">Registration successful. Now Login please.</p></div>';
+              <div class="col-md-8"><p class="bg-success">Registration successful. Now Login please.</p></div></div>';
                                 ?> 
                                 <script type="text/javascript">$("#logintoggle").click(); </script> <?php } ?>
 

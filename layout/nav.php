@@ -50,7 +50,6 @@
 
 
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#login_dropdown">
@@ -59,7 +58,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">ÜbelstGutenGalerie</a>
+      <a class="navbar-brand" href="index.php">WPF Gallery</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -126,5 +125,5 @@
         <?php } ?>
       </ul>
     </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+
 </nav>
