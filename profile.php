@@ -48,7 +48,7 @@ if ($amountImages > 0) {
                 </div>
 
                 <div class="col-xs-6 col-md-4">
-	                
+	                	
                     <h2><?php echo $_SESSION['username']; ?></h2>
 
                     <p>Kontakt: <a href="mailto:<?php echo $user->get_mail($_SESSION['userId']); ?>"><?php echo $user->get_mail($_SESSION['userId']); ?></a></p>
@@ -57,7 +57,8 @@ if ($amountImages > 0) {
 	                    					$newDate      = date("d.m.Y", strtotime($originalDate));
 											echo $newDate;
 										?></p>
-                </div>
+					
+            	</div>
             </div>
 
             <div class="row">
