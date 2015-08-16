@@ -1,29 +1,12 @@
-/*
- * Bootstrap Image Gallery JS Demo 3.0.1
- * https://github.com/blueimp/Bootstrap-Image-Gallery
- *
- * Copyright 2013, Sebastian Tschan
- * https://blueimp.net
- *
- * Licensed under the MIT license:
- * http://www.opensource.org/licenses/MIT
- */
-
-/*jslint unparam: true */
-/*global blueimp, $ */
-
 $(function () {
     'use strict';
-
-    // Load demo images from flickr:
+    
     $.ajax({
-        // Flickr API is SSL only:
-        // https://code.flickr.net/2014/04/30/flickr-api-going-ssl-only-on-june-27th-2014/
         url: 'https://api.flickr.com/services/rest/',
         data: {
             format: 'json',
             method: 'flickr.interestingness.getList',
-            api_key: '7617adae70159d09ba78cfec73c13be3' // jshint ignore:line
+            api_key: '7617adae70159d09ba78cfec73c13be3' 
         },
         dataType: 'jsonp',
         jsonp: 'jsoncallback'
@@ -31,7 +14,6 @@ $(function () {
         var linksContainer = $('#links'),
             baseUrl;
                 
-        // Add the demo images as links with thumbnails to the page:
         $.each(result.photos.photo, function (index, photo) {
             baseUrl = 'https://farm' + photo.farm + '.static.flickr.com/' +
                 photo.server + '/' + photo.id + '_' + photo.secret;
@@ -40,19 +22,9 @@ $(function () {
                 .prop('href', baseUrl + '_b.jpg')
                 .prop('title', photo.title)
                 .attr('data-gallery', '#blueimp-gallery-flickr')
+                .attr('data-description',' ')
                 .appendTo(linksContainer);
         });
     });
-    
-    $('#blueimp-gallery').on('slide', function (event, index, slide) {
-    $(this).children('.description')
-        .text($('#uploadpics a').eq(index).data('description'));
-});
-
-  $('#blueimp-gallery').on('slide', function (event, index, slide) {
-    $(this).children('.description')
-        .text($('#index_pics a').eq(index).data('description'));
-});
-
 
 });

@@ -20,20 +20,20 @@
 				?>
 
 				<div class="form-group">
-					<input type="text" name="username" id="username" class="form-control input-lg" placeholder="User Name" value="<?php if(isset($registererror)){ echo $_POST['username']; } ?>" tabindex="1"><span class="hide help-inline">This is required</span>
+					<input type="text" name="username" id="username" class="form-control input-lg" placeholder="Username" value="<?php if(isset($registererror)){ echo $_POST['username']; } ?>" tabindex="1">
 				</div>
 				<div class="form-group">
-					<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" value="<?php if(isset($registererror)){ echo $_POST['email']; } ?>" tabindex="2">
+					<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Adresse" value="<?php if(isset($registererror)){ echo $_POST['email']; } ?>" tabindex="2">
 				</div>
 				<div class="row">
 					<div class="col-xs-6 col-sm-6 col-md-6">
 						<div class="form-group">
-							<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="3">
+							<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Passwort" tabindex="3">
 						</div>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6">
 						<div class="form-group">
-							<input type="password" name="passwordConfirm" id="passwordConfirm" class="form-control input-lg" placeholder="Confirm Password" tabindex="4">
+							<input type="password" name="passwordConfirm" id="passwordConfirm" class="form-control input-lg" placeholder="Confirm Passwort" tabindex="4">
 						</div>
 					</div>
 				</div>
@@ -74,14 +74,14 @@
       <ul class="nav navbar-nav navbar-right">
 	     <li> <form action="search.php" method="GET" class="navbar-form" role="search">
         <div class="form-group">
-          <input type="text" class="form-control" name="query" placeholder="<?php if(isset($_GET['query'])) { echo $_GET['query']; } else { echo 'Search';  } ?>">
+          <input type="text" class="form-control" name="query" placeholder="<?php if(isset($_GET['query'])) { echo $_GET['query']; } else { echo 'Suchen...';  } ?>">
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form></li>
       
        <?php  if( $user->is_logged_in() ){ ?>
       <li class="dropdown">
-         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <i class="glyphicon glyphicon-user"></i> Hello <?php echo $_SESSION['username']; ?> <span class="caret"></span></a>
+         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <i class="glyphicon glyphicon-user"></i> Hallo <?php echo $_SESSION['username']; ?> <span class="caret"></span></a>
          
         
         <ul class="dropdown-menu">
@@ -107,11 +107,11 @@
             <label for="username">
                Username
             </label> 
-            <input type="text" name="username" id="username" class="form-control" placeholder="User Name" value="<?php if(isset($loginerror)){ echo $_POST['username']; } ?>">
+            <input type="text" name="username" id="username" class="form-control" placeholder="Username" value="<?php if(isset($loginerror)){ echo $_POST['username']; } ?>">
         </div>
         <div class="form-group">
             <label for="password">
-               Password
+               Passwort
             </label> 
             <input type="password" name="password" id="password" class="form-control" placeholder="Password">
         
@@ -127,3 +127,21 @@
     </div><!-- /.navbar-collapse -->
 
 </nav>
+
+  <?php
+            //check for any errors
+            if (isset($loginerror)) {
+                foreach ($loginerror as $lerror) {
+                    echo '<div class="row"><div class="col-md-8"><p class="bg-danger">' . $lerror . '</p></div></div>';
+                }
+            ?><script type="text/javascript"> $("#logintoggle").click(); </script> 
+            <?php } ?> 
+            
+            <?php
+            if ($show_modal): ?> <script type="text/javascript"> $(document).ready(function() { $('#register-modal').modal('show'); }); </script> 
+            <?php endif; ?> 
+            
+            <?php
+            if ($erfolg) {
+                echo '<div class="row"><div class="col-md-8"><p class="bg-success">Registration successful. Now Login please.</p></div></div>'; ?> <script type="text/javascript"> $("#logintoggle").click(); </script> 
+            <?php } ?>
