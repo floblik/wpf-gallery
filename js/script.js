@@ -89,11 +89,6 @@ $(document).ready(function() {
                             $('#status').css('width', percentComplete + '%');
                         }
                     }, false);
-                    myXhr.upload.addEventListener('load', function(ev) {
-                        $('#progressBar').fadeOut();
-                        $('#percentage').text('0%');
-                        $('#status').css('width', '0%');
-                    }, false);
                 }
                 return myXhr;
 
