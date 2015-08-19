@@ -103,6 +103,7 @@ class GalleryMaker
         
         $stmt = $this->db->prepare("INSERT INTO gallery (user_id, orig_path,thumb_path, description, title) VALUES ('" . $userid . "', '" . $originalImage . "', '" . $thumbImage . "', '" . $description . "' , '" . $title . "' )");
         $stmt->execute();
+		$imageId = $this->db->lastInsertId();
         $stmt = null;
         
         $full_height = 250;
@@ -153,9 +154,34 @@ class GalleryMaker
         
         imagedestroy($new_full_thumb);
         
-        echo '<a href="' . $originalImage . '" data-description="' . $description . '" title="' . $title . '" data-gallery="blueimp-gallery-uploadpics"><img src="' . $thumbImage . '" class="img_abstand" alt="' . $title . '"></a>';
+        echo '<div><a href="' . $originalImage . '" data-description="' . $description . '" title="' . $title . '" data-gallery="blueimp-gallery-uploadpics"><img src="' . $thumbImage . '" class="img_abstand" alt="' . $title . '"></a>'.
+											'<button href="" class="delete-image-button js-delete-image" data-image-id="' . $imageId . '"><i class="glyphicon glyphicon-remove"></i></button></div>';
+
         
         
+    }
+    
+    public function delete($imageId, $userid)
+    {
+        if ($userid != $_SESSION["userId"]) {
+			exit();
+		}
+		
+		$stmt = $this->db->prepare("SELECT orig_path, thumb_path FROM gallery WHERE user_id = '$userid' AND id = '$imageId'");
+        $stmt->execute();
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt = null;
+		$stmt = $this->db->prepare("DELETE FROM gallery WHERE user_id = '$userid' AND id = '$imageId'");
+        $stmt->execute();
+        $stmt = null;
+		
+		if (file_exists($result["thumb_path"])) {
+			unlink($result["thumb_path"]);
+		}
+		if (file_exists($result["orig_path"])) {
+			unlink($result["orig_path"]);
+		}		
+		echo true;		
     }
     
     

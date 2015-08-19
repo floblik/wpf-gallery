@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 //process login form if submitted
 if (isset($_POST['login-form'])) {

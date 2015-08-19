@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="style/blueimp-gallery.min.css" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="style/main.css" type="text/css">
-     <script src="js/script.js" type="text/javascript"></script>
+    <script src="js/script.js" type="text/javascript"></script>
 </head>
 
 <body>

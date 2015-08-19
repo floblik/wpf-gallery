@@ -5,7 +5,7 @@ include('classes/gallery.php');
 
 include('classes/user.php');
 
-$user = new User($db);
+$user = new User();
 
 //check if already logged in move to home page
 if (!$user->is_logged_in()) {
@@ -76,7 +76,8 @@ require('layout/header.php');
                         <div class="grid">
                             <?php
                                 foreach ($images as $value) {
-                                    echo '<a href="' . $value->orig_path . '" data-description="' . $value->description . '" title="' . $value->title . '" data-gallery="blueimp-gallery-uploadpics"><img src="' . $value->thumb_path . '" class="img_abstand" alt="' . $value->title . '" /></a>';
+                                    echo '<div><a href="' . $value->orig_path . '" data-description="' . $value->description . '" title="' . $value->title . '" data-gallery="blueimp-gallery-uploadpics"><img src="' . $value->thumb_path . '" class="img_abstand" alt="' . $value->title . '" /></a>'.
+									'<button href="" class="delete-image-button js-delete-image" data-image-id="' . $value->id . '"><i class="glyphicon glyphicon-remove"></i></button></div>';
                                     
                                 }
                             ?>

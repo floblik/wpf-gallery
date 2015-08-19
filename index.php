@@ -10,13 +10,14 @@ include('classes/gallery.php');
 include('classes/user.php');
 
 // init the classes
-$user    = new User($db);
+$user    = new User();
 $gallery = new GalleryMaker();
 
 // sql query for images and count return array
-$images       = $gallery->getImages($_SESSION['userId']);
-$amountImages = sizeof($images);
-
+if ($user->is_logged_in()) {
+	$images       = $gallery->getImages($_SESSION['userId']);
+	$amountImages = sizeof($images);
+}
 //include header template
 require('layout/header.php');
 
@@ -67,7 +68,7 @@ require('layout/header.php');
                         <?php
                             } else { ?>
 
-                        <p><a href="upload.php">Lade jetzt dein erstes Bild hoch.</a></p><?php
+                        <p><a href="manage.php">Lade jetzt dein erstes Bild hoch.</a></p><?php
                             }
                         ?>
                     </div>
