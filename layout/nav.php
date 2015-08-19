@@ -66,7 +66,7 @@
       <ul class="nav navbar-nav">
         <li><a href="index.php">Home</a></li>
          <?php  if( $user->is_logged_in() ){ ?>
-        <li><a href="upload.php">Upload</a></li>
+        <li><a href="manage.php">Manage</a></li>
         <?php } ?>
      
       </ul>
@@ -138,10 +138,10 @@
             <?php } ?> 
             
             <?php
-            if ($show_modal): ?> <script type="text/javascript"> $(document).ready(function() { $('#register-modal').modal('show'); }); </script> 
+            if (isset($show_modal) && $show_modal): ?> <script type="text/javascript"> $(document).ready(function() { $('#register-modal').modal('show'); }); </script> 
             <?php endif; ?> 
             
             <?php
-            if ($erfolg) {
+            if (isset($erfolg) && $erfolg) {
                 echo '<div class="row"><div class="col-md-8"><p class="bg-success">Registration successful. Now Login please.</p></div></div>'; ?> <script type="text/javascript"> $("#logintoggle").click(); </script> 
             <?php } ?>

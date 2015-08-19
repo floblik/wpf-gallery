@@ -1,5 +1,37 @@
-$(document).ready(function() {
+function deleteImageHandler () {
+	$(".jg-entry").off("click");
+    $(".jg-entry").on('click', '.js-delete-image', (function(e) {        
+		e.preventDefault();		
+        var image_id = $(this).attr("data-image-id");
+		var formData = {
+			"imageId": image_id
+		};
+		var eythis = $(this);
+        $.ajax({
+            url: "process_delete.php", // Url to which the request is send
+            type: "POST", // Type of request to be send, called as method
+            data: {
+				'imageId': image_id
+			}, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+            cache: false, // To unable request pages to be cached
+            success: function(data) // A function to be called if request succeeds
+                {
+					$(eythis).parent().fadeOut(function () {
+						$(eythis).parent().remove();
+						$(".grid").justifiedGallery("destroy");
+						$(".grid").justifiedGallery({
+							rowHeight: 150
+						});		
+					});
+								
+                }
 
+        })
+    }));
+}
+
+$(document).ready(function() {
+	
     $(".grid").justifiedGallery({
         rowHeight: 150
     });
@@ -41,7 +73,7 @@ $(document).ready(function() {
                         $('.upload-msg').html(data);
                     } else {
                         $('#uploadavatar').hide().html(data).fadeIn("slow");
-
+						deleteImageHandler();
 
                     }
 
@@ -118,14 +150,48 @@ $(document).ready(function() {
                         });
                         var $number = $(".count");
                         $number.html((parseInt($number.html(), 10) || 0) + 1)
-
                     }
+					deleteImageHandler();
 
                 }
 
         })
     }));
 
+	
+    $(".jg-entry").on('click', '.js-delete-image', (function(e) {
+        
+		e.preventDefault();
+		
+        var image_id = $(this).attr("data-image-id");
+		var formData = {
+			"imageId": image_id
+		};
+		var eythis = $(this);
+        $.ajax({
+            url: "process_delete.php", // Url to which the request is send
+            type: "POST", // Type of request to be send, called as method
+            data: {
+				'imageId': image_id
+			}, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+            cache: false, // To unable request pages to be cached
+            success: function(data) // A function to be called if request succeeds
+                {
+					$(eythis).parent().fadeOut(function () {
+						$(eythis).parent().remove();
+						$(".grid").justifiedGallery("destroy");
+						$(".grid").justifiedGallery({
+							rowHeight: 150
+						});		
+					});
+								
+                }
+
+        })
+    }));
+
+	deleteImageHandler();
+	
     $("#image").change(function() {
         $(".upload-msg").empty();
         var ext = $('#image').val().split('.').pop().toLowerCase();
