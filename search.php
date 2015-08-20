@@ -50,11 +50,19 @@ require('layout/header.php');
     
     $amountImages = sizeof($images);
     
-    if ($amountImages > 0) { ?><div class="grid"><?php
+    if ($amountImages > 0) { ?>
+    
+
+	                <p class="mgbottom-20">Bei der Suche nach "<?=$query?>" konnten folgende Bilder gefunden werden. Um Bilder zu löschen, rufe die <a href="manage.php">Bilderverwaltung</a> auf. </p> 
+
+
+<div class="grid"><?php
         foreach ($images as $value) {
             echo '<a href="' . $value->orig_path . '" data-description="' . $value->description . '" title="' . $value->title . '" data-gallery><img src="' . $value->thumb_path . '" class="img_abstand" alt="' . $value->title . '" /></a>';
             
         } ?></div>
+        
+        
         
         <?php } else { echo 'Leider keine Suchergebnisse.';
     }
