@@ -52,8 +52,8 @@ require('layout/header.php');
                         <p class="new">Neues Bild hinzufügen (max. 5 MB, jpg, gif, png):</p>
 
                         <form class="uploadForm margintop" enctype="multipart/form-data" action="" method="post" id="uploadForm">
-	                        <input type="hidden" name="amountImages" value="<?php echo $amountImages ?>">
-                            <input id="image" name="image" type="file">
+	                        
+	                        <input id="image" name="image" type="file">
 
                             <div class="upload-msg margintop"></div>
 
