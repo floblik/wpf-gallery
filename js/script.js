@@ -16,6 +16,8 @@ function deleteImageHandler () {
             cache: false, // To unable request pages to be cached
             success: function(data) // A function to be called if request succeeds
                 {
+	                 var $number = $(".count");
+                        $number.html((parseInt($number.html(), 10) || 0) - 1)
 					$(eythis).parent().fadeOut(function () {
 						$(eythis).parent().remove();
 						$(".grid").justifiedGallery("destroy");
@@ -61,7 +63,7 @@ $(document).ready(function() {
             processData: false, // To send DOMDocument or non processed data file it is set to false
             success: function(data) // A function to be called if request succeeds
                 {
-
+			
                     $('#avatarbutton').prop('disabled', false).val('Edit Avatar');
 
                     $('.upload-msg').html('');
@@ -127,7 +129,6 @@ $(document).ready(function() {
             }, 
             success: function(data) // A function to be called if request succeeds
                 {
-
                     $('.upload-msg').html('');
                     $('.uploadForm').each(function() {
                         this.reset();

@@ -50,7 +50,7 @@ require('layout/header.php');
             </div>
 
             <div class="row">
-                <div class="col-xs-12 col-sm-8 col-md-12">
+                <div class="col-xs-12 col-sm-8 col-md-11">
                     <div class="inner">
                         <?php
                             if ($amountImages > 0) {
@@ -86,7 +86,7 @@ require('layout/header.php');
 
             <div class="row">
                 <div class="col-md-12">
-                    <div id="links" class="col-md-12"></div><br>
+                    <div id="links" class="col-md-12"><div class="loading"></div></div><br>
                 </div>
             </div>
         </div>

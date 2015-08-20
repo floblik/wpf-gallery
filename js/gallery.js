@@ -1,6 +1,6 @@
 $(function () {
     'use strict';
-    
+      $('.loading').html('Loading...');
     $.ajax({
         url: 'https://api.flickr.com/services/rest/',
         data: {
@@ -11,6 +11,7 @@ $(function () {
         dataType: 'jsonp',
         jsonp: 'jsoncallback'
     }).done(function (result) {
+	    $('.loading').html('');
         var linksContainer = $('#links'),
             baseUrl;
                 

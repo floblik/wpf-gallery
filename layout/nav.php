@@ -66,7 +66,7 @@
       <ul class="nav navbar-nav">
         <li><a href="index.php">Home</a></li>
          <?php  if( $user->is_logged_in() ){ ?>
-        <li><a href="manage.php">Manage</a></li>
+        <li><a href="manage.php">Bilder verwalten</a></li>
         <?php } ?>
      
       </ul>

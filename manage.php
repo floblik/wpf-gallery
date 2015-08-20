@@ -19,7 +19,7 @@ $amountImages = sizeof($images);
 
 
 //define page title
-$title = 'Upload';
+$title = 'Bilder verwalten';
 
 //include header template
 require('layout/header.php');
@@ -52,6 +52,7 @@ require('layout/header.php');
                         <p class="new">Neues Bild hinzufügen (max. 5 MB, jpg, gif, png):</p>
 
                         <form class="uploadForm margintop" enctype="multipart/form-data" action="" method="post" id="uploadForm">
+	                        <input type="hidden" name="amountImages" value="<?php echo $amountImages ?>">
                             <input id="image" name="image" type="file">
 
                             <div class="upload-msg margintop"></div>
@@ -65,11 +66,27 @@ require('layout/header.php');
                     </div>
                 </div>
             </div>
-
+                        
             <div class="row">
-                <div class="col-xs-12 col-sm-8 col-md-12">
+                <div class="col-md-4">
                     <div class="inner">
-                        <?php
+                        <h3>Bilder löschen</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                	<div class="inner">
+	                <p>Hier kannst du deine hochgeladenen Bilder anschauen und bei Bedarf löschen. Das jeweilige Bild wird dann aus deiner Galerie entfernt.</p> 
+                	</div>
+                </div>
+            </div> 
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-md-11">
+                    <div class="inner">
+                       
+   <?php
                         if ($amountImages > 0) {
                         ?>
 
