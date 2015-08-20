@@ -48,13 +48,23 @@ require('layout/header.php');
                     </div>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-xs-12 col-sm-8 col-md-11">
-                    <div class="inner">
-                        <?php
+            
+             <?php
                             if ($amountImages > 0) {
                         ?>
+            
+            <div class="row">
+                <div class="col-md-12">
+                	<div class="inner">
+	                <p>Deine hochgeladenen Bilder werden hier angezeigt. Um Bilder zu löschen, rufe die <a href="manage.php">Bilderverwaltung</a> auf.</p> 
+                	</div>
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-md-12">
+                    <div class="inner">
+                       
 
                         <div class="grid">
                             <?php
@@ -64,17 +74,28 @@ require('layout/header.php');
                                     }
                             ?>
                         </div>
-                        
+                        </div>
+                </div>
+            </div>
                         <?php
                             } else { ?>
 
-                        <p><a href="manage.php">Lade jetzt dein erstes Bild hoch.</a></p><?php
+                       <div class="row">
+                <div class="col-xs-12 col-sm-8 col-md-12">
+                    <div class="inner"> <p><a href="manage.php">Lade jetzt dein erstes Bild hoch.</a></p></div></div></div><?php
                             }
                         ?>
+                    
+            <?php } else { // /loggedin ?> 
+            
+             <div class="row">
+                <div class="col-xs-12 col-sm-8 col-md-12">
+                    <div class="inner"> <p>Willkommen bei WPF Gallery. Hier kann jeder seine eigene Galerie erstellen. Ohne Benutzerprofil kannst du dir die aktuell populärsten Bilder bei Flickr anschauen.</p><p>Wenn du selber Bilder hochladen willst, dann <a href="#dummy" data-toggle="modal" data-target="#register-modal">registriere dich jetzt.</a> Du brauchst nur einen Benutzernamen und eine E-Mail Adresse. </p>
                     </div>
-                </div>
-            </div>
-            <?php } // /loggedin ?> 
+                    </div>
+                    </div>
+                    
+                    <?php } ?>
 
             <div class="row">
                 <div class="col-md-4">

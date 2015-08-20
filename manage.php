@@ -52,8 +52,8 @@ require('layout/header.php');
                         <p class="new">Neues Bild hinzufügen (max. 5 MB, jpg, gif, png):</p>
 
                         <form class="uploadForm margintop" enctype="multipart/form-data" action="" method="post" id="uploadForm">
-	                        
-	                        <input id="image" name="image" type="file">
+	                   
+                            <input id="image" name="image" accept="image/jpg,image/png,image/jpeg,image/gif" type="file">
 
                             <div class="upload-msg margintop"></div>
 
@@ -70,7 +70,7 @@ require('layout/header.php');
             <div class="row">
                 <div class="col-md-4">
                     <div class="inner">
-                        <h3>Bilder löschen</h3>
+                        <h3>Meine Bilder</h3>
                     </div>
                 </div>
             </div>
@@ -83,7 +83,7 @@ require('layout/header.php');
             </div> 
             
             <div class="row">
-                <div class="col-xs-12 col-sm-8 col-md-11">
+                <div class="col-xs-12 col-sm-8 col-md-12">
                     <div class="inner">
                        
    <?php

@@ -1,4 +1,4 @@
-function deleteImageHandler () {
+function deleteImageHandler() {
 	$(".jg-entry").off("click");
     $(".jg-entry").on('click', '.js-delete-image', (function(e) {        
 		e.preventDefault();		
@@ -34,61 +34,15 @@ function deleteImageHandler () {
 
 $(document).ready(function() {
 	
+$(function() {
+  deleteImageHandler();
+});
+	
     $(".grid").justifiedGallery({
         rowHeight: 150
     });
 
-    $(".avatarForm").on('submit', (function(e) {
-        e.preventDefault();
-
-        if (!$('#avatar').val()) {
-            $(".upload-msg").html("<span class='msg-error'>Bitte ein Bild auswählen.</span>");
-            return false;
-        }
-
-        var ext = $('#avatar').val().split('.').pop().toLowerCase();
-        if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
-            $(".upload-msg").html("<span class='msg-error'>Es sind nur die Formate .jpeg, .jpg, .gif und .png erlaubt.</span>");
-            return false;
-        }
-
-        $('#avatarbutton').prop('disabled', true).val('Loading...');
-
-        $.ajax({
-            url: "process_upload.php", // Url to which the request is send
-            type: "POST", // Type of request to be send, called as method
-            data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
-            contentType: false, // The content type used when sending data to the server.
-            cache: false, // To unable request pages to be cached
-            processData: false, // To send DOMDocument or non processed data file it is set to false
-            success: function(data) // A function to be called if request succeeds
-                {
-			
-                    $('#avatarbutton').prop('disabled', false).val('Edit Avatar');
-
-                    $('.upload-msg').html('');
-                    $('.avatarForm').each(function() {
-                        this.reset();
-                    });
-
-                    if (data.indexOf("Error") > -1) {
-                        $('.upload-msg').html(data);
-                    } else {
-                        $('#uploadavatar').hide().html(data).fadeIn("slow");
-						deleteImageHandler();
-
-                    }
-
-                }
-
-        })
-    }));
-    
-        $("#avatar").change(function() {
-        $(".upload-msg").empty();
-    });
-
-
+  
     $(".uploadForm").on('submit', (function(e) {
         e.preventDefault();
 
@@ -144,54 +98,73 @@ $(document).ready(function() {
                     } else if (!data) {
                         $('.upload-msg').html("<span id='error' class='bg-danger'>Es gab einen Serverfehler beim Upload.<br />Die Datei war wahrscheinlich zu groß.</span>");
                     } else {
+	                    var $number = $(".count");
+                        $number.html((parseInt($number.html(), 10) || 0) + 1);
+                        
                         $(data).hide().prependTo(".grid").fadeIn("slow");
                         $(".grid").justifiedGallery("destroy");
                         $(".grid").justifiedGallery({
                             rowHeight: 150
                         });
-                        var $number = $(".count");
-                        $number.html((parseInt($number.html(), 10) || 0) + 1)
+                        
                     }
+                    
 					deleteImageHandler();
 
                 }
 
         })
     }));
-
 	
-    $(".jg-entry").on('click', '.js-delete-image', (function(e) {
-        
-		e.preventDefault();
-		
-        var image_id = $(this).attr("data-image-id");
-		var formData = {
-			"imageId": image_id
-		};
-		var eythis = $(this);
+	$(".avatarForm").on('submit', (function(e) {
+        e.preventDefault();
+
+        if (!$('#avatar').val()) {
+            $(".upload-msg").html("<span class='msg-error'>Bitte ein Bild auswählen.</span>");
+            return false;
+        }
+
+        var ext = $('#avatar').val().split('.').pop().toLowerCase();
+        if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+            $(".upload-msg").html("<span class='msg-error'>Es sind nur die Formate .jpeg, .jpg, .gif und .png erlaubt.</span>");
+            return false;
+        }
+
+        $('#avatarbutton').prop('disabled', true).val('Loading...');
+
         $.ajax({
-            url: "process_delete.php", // Url to which the request is send
+            url: "process_upload.php", // Url to which the request is send
             type: "POST", // Type of request to be send, called as method
-            data: {
-				'imageId': image_id
-			}, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+            data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+            contentType: false, // The content type used when sending data to the server.
             cache: false, // To unable request pages to be cached
+            processData: false, // To send DOMDocument or non processed data file it is set to false
             success: function(data) // A function to be called if request succeeds
                 {
-					$(eythis).parent().fadeOut(function () {
-						$(eythis).parent().remove();
-						$(".grid").justifiedGallery("destroy");
-						$(".grid").justifiedGallery({
-							rowHeight: 150
-						});		
-					});
-								
+			
+                    $('#avatarbutton').prop('disabled', false).val('Edit Avatar');
+
+                    $('.upload-msg').html('');
+                    $('.avatarForm').each(function() {
+                        this.reset();
+                    });
+
+                    if (data.indexOf("Error") > -1) {
+                        $('.upload-msg').html(data);
+                    } else {
+                        $('#uploadavatar').hide().html(data).fadeIn("slow");
+						deleteImageHandler();
+
+                    }
+
                 }
 
         })
     }));
-
-	deleteImageHandler();
+    
+        $("#avatar").change(function() {
+        $(".upload-msg").empty();
+    });
 	
     $("#image").change(function() {
         $(".upload-msg").empty();
