@@ -1,11 +1,11 @@
 <?php
-	
+session_start();
 //define page title
 $title = 'Suche';
 
 include('classes/user.php');
 
-$user = new User($db);
+$user = new User();
 
 
 include('classes/gallery.php');
