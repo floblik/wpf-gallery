@@ -72,14 +72,14 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
+	       <?php  if( $user->is_logged_in() ){ ?>
 	     <li> <form action="search.php" method="GET" class="navbar-form" role="search">
         <div class="form-group">
           <input type="text" class="form-control" name="query" placeholder="<?php if(isset($_GET['query'])) { echo $_GET['query']; } else { echo 'Suchen...';  } ?>">
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form></li>
-      
-       <?php  if( $user->is_logged_in() ){ ?>
+
       <li class="dropdown">
          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <i class="glyphicon glyphicon-user"></i> Hallo <?php echo $_SESSION['username']; ?> <span class="caret"></span></a>
          
