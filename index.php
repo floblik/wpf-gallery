@@ -107,7 +107,7 @@ require('layout/header.php');
 
             <div class="row">
                 <div class="col-md-12">
-                    <div id="links" class="col-md-12"><div class="loading"></div></div><br>
+                    <div id="links" class="col-md-12 margintop"><div class="loading"></div></div><br>
                 </div>
             </div>
         </div>

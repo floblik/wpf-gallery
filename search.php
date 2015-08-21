@@ -64,23 +64,38 @@ require('layout/header.php');
         
         
         
-        <?php } else { echo 'Leider keine Suchergebnisse.';
-    }
-    
-    
+        <?php } else { echo '<p>In deiner Bildergalerie gab es zu dem Suchbegriff "'.$query.'" keine Treffer.</p>'; } 
     
 }
 
 else { 
-    echo "Leider keine Suchergebnisse.";
+    echo "Der Suchbegriff muss mindestens 3 Zeichen enthalten.";
 }
 ?>
                     </div>
                 </div>
             </div>
+
+			<div class="row">
+                <div class="col-md-4">
+                    <div class="inner">
+                        <h3>Passende Bilder von Flickr</h3>
+                    </div>
+                </div>
+            </div>			
+			
+            <div class="row">
+                <div class="col-md-12">
+	                <div class="inner">
+	                <p>Es wurden folgende Bilder bei Flickr gefunden, die zu "<?php echo $query?>" passen:</p>
+	                </div>
+                    <div id="links-search" class="col-md-12 margintop"><div class="loading"></div></div>
+									
+                </div>
+            </div>
         </div>
-    </div>
-    
+    </div>  
+    <script type="text/javascript" src="js/flickr_search.js"></script>  
     <?php
 //include footer template
 require('layout/footer.php');
