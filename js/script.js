@@ -44,19 +44,21 @@ $(function() {
 
   
     $(".uploadForm").on('submit', (function(e) {
+        
         e.preventDefault();
 
         if (!$('#image').val()) {
             $(".upload-msg").html("<span class='msg-error'>Bitte ein Bild auswählen.</span>");
             return false;
         }
-
+    
         var ext = $('#image').val().split('.').pop().toLowerCase();
         if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
             $(".upload-msg").html("<span class='msg-error'>Es sind nur die Formate .jpeg, .jpg, .gif und .png erlaubt.</span>");
             return false;
         }
-        $(".upload-msg").html('<div id="progressBar"><div id="status"></div><div id="percentage">0%</div></div>');
+       
+       $(".upload-msg").html('<div id="progressBar"><div id="status"></div><div id="percentage">0%</div></div>');
 
         $.ajax({
             url: "process_upload.php", // Url to which the request is send
